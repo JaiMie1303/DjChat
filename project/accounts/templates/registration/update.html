@@ -1,0 +1,22 @@
+{% extends "chat/root.html" %} {% load static %}
+<br />
+{% block stuffForHeader %}
+<link rel="stylesheet" href="{% static 'chat/css/form.css' %}" />
+{% endblock stuffForHeader %} {% block content %}
+<main class="auth-form-container">
+    <form method="post" enctype="multipart/form-data">
+        {{form.as_div}} {% csrf_token %}
+        <div>
+            <label>Аватар</label>
+            <div class="helptext">
+                Ты можешь изменить аватар
+                <a href="{% url 'profile-image-update' user.user_profile_info.id%}"
+                    ><strong>form</strong></a
+                >
+            </div>
+        </div>
+        <button class="submit-button" type="submit">Подтвердить</button>
+        <p><a href="{% url 'home' %}">Назад</a></p>
+    </form>
+</main>
+{% endblock content %}
